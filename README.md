@@ -1,6 +1,6 @@
-# Node - Robokassa
+# Robokassa Node.JS
 
-This is node package for work with robokassa.ru API [robokassa.ru](http://www.robokassa.ru/ru/Doc/Ru/Interface.aspx)
+Node.JS package for [Robokassa API](https://docs.robokassa.ru)
 
 ## Installation
 
@@ -49,12 +49,17 @@ const url = robokassa.generatePaymentUrl({
 // Then redirect a user to the generated URL.
 ```
 
+```javascript
+const { Robokassa } = require('@dev-aces/robokassa');
+
+// The rest is the same as the TypeScript example.
+```
+
 ### Backend receive calls from Robokassa (NPM express example):
 
-If `POST` method is selected for the result response in the Robokassa settings (recommended), then the results can be processed with the next Express code:
+If the `POST` method is selected for the result response in the Robokassa settings (recommended), then the results can be processed with the next Express code:
 
 ```typescript
-
 import { Robokassa, IRobokassaResponse } = from '@dev-aces/robokassa';
 import express, { Request, Response } from 'express';
 
@@ -102,7 +107,9 @@ $ npm run build && npm run test
 
 ## History
 
-Some ideas a taken from the old projects [betsol/node-robokassa](https://github.com/betsol/node-robokassa) and [SeNaP/node-robokassa](https://github.com/SeNaP/node-robokassa)
+Ideas a taken from the old projects:
+- [betsol/node-robokassa](https://github.com/betsol/node-robokassa)
+- [SeNaP/-node-robokassa](https://github.com/SeNaP/node-robokassa)
 
 ## License
 
