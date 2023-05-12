@@ -1,0 +1,31 @@
+{
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true, // json imports
+    "esModuleInterop": true, // import common modules as ES6 Modules
+    "allowSyntheticDefaultImports": true, // support typesystem compatibility
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "useUnknownInCatchVariables": true,
+    "target": "ES2020",
+    "allowJs": true,
+    "skipLibCheck": true
+  },
+  "compileOnSave": true,
+  "include": ["src"],
+  "exclude": ["**/**/node_modules/**/**", "lib", "tests"]
+}

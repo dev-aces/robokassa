@@ -1,0 +1,36 @@
+name: PR to main
+
+on:
+  pull_request:
+    branches: [main]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout project repository
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          registry-url: https://registry.npmjs.org/
+          node-version: '16'
+
+      # Install dependencies (required by Run tests step)
+      - name: Install dependencies
+        run: npm install
+        
+      # Build
+      - name: Build
+        run: npm run build
+
+      # Tests
+      - name: Run tests
+        run: npm test          
+
