@@ -26,7 +26,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run build"
+      "pre-push": "npm run format && npm run build && npm test"
     }
   },
   "devDependencies": {

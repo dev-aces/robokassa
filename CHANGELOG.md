@@ -8,13 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ## 1.0.0 - 2023-05-12
+
 ### Added
+
 - Added `isTest` mode parameter.
 - Added `receipt` parameter to conform the fiscal policy.
 - Added unit tests.
 
 ### Changed
+
 - Rewrote the forked code to use TypeScript.
 
 ### Fixed
+
 - Semantic Version calculation errors in the old forked repositories.

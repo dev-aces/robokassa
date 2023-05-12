@@ -17,6 +17,7 @@ $ npm install @dev-aces/robokassa
 Generate a payment URL and redirect a user to it.
 
 TypeScript:
+
 ```typescript
 import { Robokassa } = from '@dev-aces/robokassa';
 
@@ -52,6 +53,7 @@ const url = robokassa.generatePaymentUrl({
 ```
 
 JavaScript:
+
 ```javascript
 const { Robokassa } = require('@dev-aces/robokassa');
 
@@ -63,6 +65,7 @@ const { Robokassa } = require('@dev-aces/robokassa');
 If the `POST` method is selected for the result response in the Robokassa settings (recommended), then the results can be processed with the next Express code.
 
 TypeScript:
+
 ```typescript
 import { Robokassa, IRobokassaResponse } = from '@dev-aces/robokassa';
 import express, { Request, Response } from 'express';
@@ -112,6 +115,7 @@ $ npm run build && npm run test
 ## History
 
 Ideas are taken from the old projects:
+
 - [betsol/node-robokassa](https://github.com/betsol/node-robokassa)
 - [SeNaP/-node-robokassa](https://github.com/SeNaP/node-robokassa)
 
