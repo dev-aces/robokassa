@@ -69,12 +69,16 @@ const app = express();
 app.post('/payment/result', function (req: Request, res: Response) {
   const robokassaResponse = req.body as IRobokassaResponse;
 
-  // const { InvId, OutSum, shp_interface, ...etc } = robokassaResponse;
-
   if (robokassa.checkPayment(robokassaResponse)) {
     console.log('PAYMENT SUCCESS!');
+
+    // It is required to return `OK[InvId]` response for successful processing.
+    const { InvId, /* OutSum, shp_interface, ...etc */ } = robokassaResponse;
+
+    res.send(`OK${InvId}`);
   } else {
-    console.log('PAYMENT NOT SUCCESS!');
+    console.log('Processing failed!');
+    res.send(`Failure`);
   }
 });
 

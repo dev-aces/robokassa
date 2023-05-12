@@ -1,4 +1,4 @@
-import { RobokassaUserParameterKey } from "./RobokassaUserParameterKey";
+import { RobokassaUserParameterKey } from './RobokassaUserParameterKey';
 
 export type IRobokassaResponse = {
   /**
