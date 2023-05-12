@@ -71,7 +71,9 @@ jobs:
       # Commit changes
       - name: Commit CHANGELOG.md and package.json changes and create tag
         run: |
+          npm i
           git add "package.json"
+          git add "package-lock.json"
           git add "CHANGELOG.md"
           git commit -m "chore: release ${{ env.NEW_VERSION }}"
           git tag ${{ env.NEW_VERSION }}
