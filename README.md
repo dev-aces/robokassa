@@ -111,7 +111,7 @@ $ npm run build && npm run test
 
 ## History
 
-Ideas a taken from the old projects:
+Ideas are taken from the old projects:
 - [betsol/node-robokassa](https://github.com/betsol/node-robokassa)
 - [SeNaP/-node-robokassa](https://github.com/SeNaP/node-robokassa)
 
