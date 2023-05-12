@@ -91,11 +91,11 @@ app.post('/payment/result', function (req: Request, res: Response) {
   }
 });
 
-express.get('/payment/true', function (req: Request, res: Response) {
+app.get('/payment/true', function (req: Request, res: Response) {
   res.render('payment_true');
 });
 
-express.get('/payment/false', function (req: Request, res: Response) {
+app.get('/payment/false', function (req: Request, res: Response) {
   res.render('payment_false');
 });
 ```
