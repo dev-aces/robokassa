@@ -1,6 +1,8 @@
 # Robokassa Node.JS
 
-Node.JS package for [Robokassa API](https://docs.robokassa.ru)
+Node.JS package for [Robokassa API](https://docs.robokassa.ru).
+
+Passwords should be kept as secrets. This package should be used only at the Backend side.
 
 ## Installation
 
@@ -8,12 +10,13 @@ Node.JS package for [Robokassa API](https://docs.robokassa.ru)
 $ npm install @dev-aces/robokassa
 ```
 
-## Usage:
+## Usage
 
-TypeScript and JavaScript are supported.
+### Payment url
 
-### Generate payment url
+Generate a payment URL and redirect a user to it.
 
+TypeScript:
 ```typescript
 import { Robokassa } = from '@dev-aces/robokassa';
 
@@ -46,19 +49,20 @@ const url = robokassa.generatePaymentUrl({
   },
 });
 
-// Then redirect a user to the generated URL.
 ```
 
+JavaScript:
 ```javascript
 const { Robokassa } = require('@dev-aces/robokassa');
 
 // The rest is the same as the TypeScript example.
 ```
 
-### Backend receive calls from Robokassa (NPM express example):
+### Calls from Robokassa
 
-If the `POST` method is selected for the result response in the Robokassa settings (recommended), then the results can be processed with the next Express code:
+If the `POST` method is selected for the result response in the Robokassa settings (recommended), then the results can be processed with the next Express code.
 
+TypeScript:
 ```typescript
 import { Robokassa, IRobokassaResponse } = from '@dev-aces/robokassa';
 import express, { Request, Response } from 'express';
