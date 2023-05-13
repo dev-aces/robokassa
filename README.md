@@ -1,20 +1,24 @@
 # Robokassa Node.JS
 
-Node.JS package for [Robokassa API](https://docs.robokassa.ru).
+Пакет Node.JS для [Robokassa](https://docs.robokassa.ru).
 
-Passwords should be kept as secrets. This package should be used only at the Backend side.
+Поддерживает JavaScript и TypeScript.
 
-## Installation
+А также весь современный API Робокассы, включая [фискализацию](https://docs.robokassa.ru/fiscalization/?utm_medium=email&utm_source=UniSender&utm_campaign=284292554) через receipt, которую необходимо проводить по закону РФ для всех интернет услуг.
+
+Пакет предназначен только для использования на сервере, пароли должны сохраняться в секрете.
+
+## Установка
 
 ```sh
 $ npm install @dev-aces/robokassa
 ```
 
-## Usage
+# Использование
 
-### Payment url
+## URL для оплаты
 
-Generate a payment URL and redirect a user to it.
+Сгенерируйте URL для оплаты на сервере и перенаправьте на него браузер пользователя.
 
 TypeScript:
 
@@ -30,12 +34,14 @@ const robokassa = new Robokassa({
 const url = robokassa.generatePaymentUrl({
   outSum: '10.00',
   description: 'Тестовый продукт',
+  // Пользовательские параметры должны начинаться с "shp_" | "Shp_" | "SHP_".
+  // Они будут переданы на ваш сервер вызовом Робокассы после оплаты.
   userParameters: {
     shp_interface: 'link',
+    shp_user_id: 'user_id',
   },
-  culture: 'ru',
-  encoding: 'utf-8',
 
+  // фискализация
   receipt: {
     items: [
       {
@@ -57,12 +63,12 @@ JavaScript:
 ```javascript
 const { Robokassa } = require('@dev-aces/robokassa');
 
-// The rest is the same as the TypeScript example.
+// Остальное аналогично TypeScript примеру.
 ```
 
-### Calls from Robokassa
+## Webhooks
 
-If the `POST` method is selected for the result response in the Robokassa settings (recommended), then the results can be processed with the next Express code.
+Если в настройках Робокассы исользуется метод `POST` для отправки рузультатов (рекомендуется), то можно использовать Express.JS для обработки запросов:
 
 TypeScript:
 
@@ -78,22 +84,27 @@ const robokassa = new Robokassa({
 
 const app = express();
 
+// Указать данный URL для отправки результатов в настройках Робокассы
 app.post('/payment/result', function (req: Request, res: Response) {
   const robokassaResponse = req.body as IRobokassaResponse;
 
   if (robokassa.checkPayment(robokassaResponse)) {
     console.log('PAYMENT SUCCESS!');
 
-    // It is required to return `OK[InvId]` response for successful processing.
     const { InvId, /* OutSum, shp_interface, ...etc */ } = robokassaResponse;
 
+    // Обязательно вернуть ответ Робокассе в формате `OK[InvId]` при успешной обработке запроса.
     res.send(`OK${InvId}`);
   } else {
     console.log('Processing failed!');
     res.send(`Failure`);
   }
 });
+```
 
+Опционально можно добавить webhook APIs для оповещения об успешной и неуспешной оплате.
+
+```typescript
 app.get('/payment/true', function (req: Request, res: Response) {
   res.render('payment_true');
 });
@@ -103,22 +114,24 @@ app.get('/payment/false', function (req: Request, res: Response) {
 });
 ```
 
-## Contributing
+## Внесение изменений
 
-Fork the repository, make changes, ensure that project is tested:
+Сделайте fork репозитория, изменения, убедитесь что успешно пройдены тесты и форматирование:
 
 ```bash
 $ npm install
-$ npm run build && npm run test
+$ npm run format
+$ npm run build
+$ npm run test
 ```
 
-## History
+# История
 
-Ideas are taken from the old projects:
+Идея взяты из следующий старых проектов, которые, к сожалению, не поддерживают современный API Робокассы:
 
 - [betsol/node-robokassa](https://github.com/betsol/node-robokassa)
 - [SeNaP/-node-robokassa](https://github.com/SeNaP/node-robokassa)
 
-## License
+## Лицензия
 
 MIT
