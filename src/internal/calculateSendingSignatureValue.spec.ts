@@ -34,7 +34,7 @@ describe('#calculateSendingSignatureValue', () => {
       });
 
       expect(result).toEqual(
-        'my_merchant_login:200.00:84:my_password1:Shp_email=test%40test.com:Shp_user_id=123',
+        'my_merchant_login:200.00:84:my_password1:Shp_email=test@test.com:Shp_user_id=123',
       );
     });
 

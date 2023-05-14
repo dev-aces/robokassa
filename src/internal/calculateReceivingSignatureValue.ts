@@ -16,9 +16,8 @@ export const buildExpectedReceivingSignatureString = ({
   );
 
   const signatureUserParams =
-    userParameters.map(
-      ([key, value]) => `${key}=${encodeURIComponent(value?.toString() ?? '')}`,
-    ) ?? [];
+    userParameters.map(([key, value]) => `${key}=${value?.toString() ?? ''}`) ??
+    [];
   // Порядок параметров важен, сортируем по алфавиту
   signatureUserParams.sort((a, b) => a.localeCompare(b));
 
