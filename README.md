@@ -1,6 +1,6 @@
 # Robokassa Node.JS
 
-Пакет Node.JS для [Robokassa](https://docs.robokassa.ru).
+Пакет [Robokassa](https://docs.robokassa.ru) для Node.JS.
 
 Поддерживает JavaScript и TypeScript.
 
@@ -29,13 +29,16 @@ const robokassa = new Robokassa({
   merchantLogin: 'my_merchant_login',
   password1: 'my_password_1',
   password2: 'my_password_2',
+  // hashAlgorithm: 'md5' (default)
+  // isTest: false (default)
+  // url: 'https://auth.robokassa.ru/Merchant/Index.aspx' (default)
 });
 
 const url = robokassa.generatePaymentUrl({
   outSum: '10.00',
   description: 'Тестовый продукт',
-  // Пользовательские параметры должны начинаться с "shp_" | "Shp_" | "SHP_".
-  // Они будут переданы на ваш сервер вызовом Робокассы после оплаты.
+  // Пользовательские параметры должны начинаться с "shp_" или "Shp_" или "SHP_".
+  // Они будут переданы на ваш сервер вызовом Робокассы после оплаты в том же виде.
   userParameters: {
     shp_interface: 'link',
     shp_user_id: 'user_id',
@@ -68,7 +71,11 @@ const { Robokassa } = require('@dev-aces/robokassa');
 
 ## Webhooks
 
-Если в настройках Робокассы исользуется метод `POST` для отправки рузультатов (рекомендуется), то можно использовать Express.JS для обработки запросов:
+Result URL для подтверждения и обработки успешной оплаты.
+
+Для перенаправления браузера пользователя после оплаты Робокасса использует параметры Success URL и Failure URL. Не перепутайте.
+
+Если в настройках Робокассы исользуется метод `POST` для отправки Result URL (рекомендуется), то можно использовать следующий код Express.JS для обработки запросов:
 
 TypeScript:
 
@@ -84,12 +91,12 @@ const robokassa = new Robokassa({
 
 const app = express();
 
-// Указать данный URL для отправки результатов в настройках Робокассы
+// Указать данный URL для отправки успешного результаты оплаты в настройках Робокассы (Method of sending data to Result Url)
 app.post('/payment/result', function (req: Request, res: Response) {
   const robokassaResponse = req.body as IRobokassaResponse;
 
   if (robokassa.checkPayment(robokassaResponse)) {
-    console.log('PAYMENT SUCCESS!');
+    console.log('Successful payment!');
 
     const { InvId, /* OutSum, shp_interface, ...etc */ } = robokassaResponse;
 
@@ -99,18 +106,6 @@ app.post('/payment/result', function (req: Request, res: Response) {
     console.log('Processing failed!');
     res.send(`Failure`);
   }
-});
-```
-
-Опционально можно добавить webhook APIs для оповещения об успешной и неуспешной оплате.
-
-```typescript
-app.get('/payment/true', function (req: Request, res: Response) {
-  res.render('payment_true');
-});
-
-app.get('/payment/false', function (req: Request, res: Response) {
-  res.render('payment_false');
 });
 ```
 
