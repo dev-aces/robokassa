@@ -76,6 +76,54 @@ describe('#Robokassa', () => {
         );
       });
 
+      it('should generate url without IsTest', () => {
+        const testRobokassa = new Robokassa({
+          merchantLogin: 'my_merchant_login',
+          password1: 'my_password1',
+          password2: 'my_password2',
+          isTest: false,
+        });
+        const result = testRobokassa.generatePaymentUrl({
+          description: 'Товар 1',
+          invId: 42,
+          outSum: '100.00',
+        });
+        expect(result).toEqual(
+          'https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=my_merchant_login&Description=%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%201&InvId=42&OutSum=100.00&SignatureValue=7642fdc174d0aabe022d992afd59f276',
+        );
+      });
+
+      it('should format outSum to fixed string when number type is passed', () => {
+        const testRobokassa = new Robokassa({
+          merchantLogin: 'my_merchant_login',
+          password1: 'my_password1',
+          password2: 'my_password2',
+        });
+        const result = testRobokassa.generatePaymentUrl({
+          description: 'Товар 1',
+          invId: 42,
+          outSum: 100,
+        });
+        expect(result).toEqual(
+          'https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=my_merchant_login&Description=%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%201&InvId=42&OutSum=100.00&SignatureValue=7642fdc174d0aabe022d992afd59f276',
+        );
+      });
+
+      it('should pass InvId=0 when invId is not specified', () => {
+        const testRobokassa = new Robokassa({
+          merchantLogin: 'my_merchant_login',
+          password1: 'my_password1',
+          password2: 'my_password2',
+        });
+        const result = testRobokassa.generatePaymentUrl({
+          description: 'Товар 1',
+          outSum: '100.00',
+        });
+        expect(result).toEqual(
+          'https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=my_merchant_login&Description=%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%201&OutSum=100.00&InvId=0&SignatureValue=cd9e54da801539e5bb4d6d371f6fef3f',
+        );
+      });
+
       it('should generate url with maximum parameters', () => {
         const result = robokassa.generatePaymentUrl({
           description: 'Услуги по разработке',

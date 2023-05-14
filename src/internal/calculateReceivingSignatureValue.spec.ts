@@ -28,7 +28,7 @@ describe('#calculateReceivingSignatureValue', () => {
       });
 
       expect(result).toEqual(
-        '200.00:84:my_password2:Shp_email=test%40test.com:Shp_user_id=123',
+        '200.00:84:my_password2:Shp_email=test@test.com:Shp_user_id=123',
       );
     });
   });

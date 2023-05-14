@@ -22,6 +22,10 @@ export class Robokassa {
       order.invId = 0;
     }
 
+    if (typeof order.outSum === 'number') {
+      order.outSum = order.outSum.toFixed(2);
+    }
+
     const { userParameters, receipt, ...usualOrderParameters } = order;
 
     const orderWithCapitalizedKeys = Object.fromEntries(
