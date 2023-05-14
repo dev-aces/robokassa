@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Allow outSum to be a number or a formatted string.
+
+### Fixed
+- Fixed calculating signature value with special symbols in userParams (@ in emails).
+
 ## 1.0.1 - 2023-05-13
 ### Changed
 - Translated README.md to Russian language.

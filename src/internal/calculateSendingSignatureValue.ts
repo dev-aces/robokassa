@@ -12,7 +12,7 @@ export const buildSendingSignatureString = ({
 }) => {
   const signatureUserParams =
     Object.entries(order.userParameters ?? {}).map(
-      ([key, value]) => `${key}=${encodeURIComponent(value?.toString() ?? '')}`,
+      ([key, value]) => `${key}=${value?.toString() ?? ''}`,
     ) ?? [];
   // Порядок параметров важен, сортируем по алфавиту
   signatureUserParams.sort((a, b) => a.localeCompare(b));
