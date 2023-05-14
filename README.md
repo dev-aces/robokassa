@@ -35,7 +35,7 @@ const robokassa = new Robokassa({
 });
 
 const url = robokassa.generatePaymentUrl({
-  outSum: '10.00',
+  outSum: '10.00', // или outSum: 10 (type number)
   description: 'Тестовый продукт',
   // Пользовательские параметры должны начинаться с "shp_" или "Shp_" или "SHP_".
   // Они будут переданы на ваш сервер вызовом Робокассы после оплаты в том же виде.
