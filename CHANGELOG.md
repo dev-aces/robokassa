@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fixed calculating signature value with special symbols in userParams (@ in emails).
+- Renamed Email to EMail field in IRobokassaResponse.
 
 ## 1.0.1 - 2023-05-13
 ### Changed
