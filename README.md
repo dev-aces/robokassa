@@ -58,7 +58,6 @@ const url = robokassa.generatePaymentUrl({
     ],
   },
 });
-
 ```
 
 JavaScript:
@@ -98,7 +97,7 @@ app.post('/payment/result', function (req: Request, res: Response) {
   if (robokassa.checkPayment(robokassaResponse)) {
     console.log('Successful payment!');
 
-    const { InvId, /* OutSum, shp_interface, ...etc */ } = robokassaResponse;
+    const { InvId /* OutSum, shp_interface, ...etc */ } = robokassaResponse;
 
     // Обязательно вернуть ответ Робокассе в формате `OK[InvId]` при успешной обработке запроса.
     res.send(`OK${InvId}`);
