@@ -23,7 +23,7 @@ $ npm install @dev-aces/robokassa
 TypeScript:
 
 ```typescript
-import { Robokassa } = from '@dev-aces/robokassa';
+import { Robokassa } from '@dev-aces/robokassa';
 
 const robokassa = new Robokassa({
   merchantLogin: 'my_merchant_login',
@@ -80,7 +80,7 @@ Result URL для подтверждения и обработки успешн�
 TypeScript:
 
 ```typescript
-import { Robokassa, IRobokassaResponse } = from '@dev-aces/robokassa';
+import { Robokassa, IRobokassaResponse } from '@dev-aces/robokassa';
 import express, { Request, Response } from 'express';
 
 const robokassa = new Robokassa({
