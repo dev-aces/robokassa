@@ -23,7 +23,7 @@ $ npm install @dev-aces/robokassa
 TypeScript:
 
 ```typescript
-import { Robokassa } = from '@dev-aces/robokassa';
+import { Robokassa } from '@dev-aces/robokassa';
 
 const robokassa = new Robokassa({
   merchantLogin: 'my_merchant_login',
@@ -58,7 +58,6 @@ const url = robokassa.generatePaymentUrl({
     ],
   },
 });
-
 ```
 
 JavaScript:
@@ -75,12 +74,12 @@ Result URL для подтверждения и обработки успешн�
 
 Для перенаправления браузера пользователя после оплаты Робокасса использует параметры Success URL и Failure URL. Не перепутайте.
 
-Если в настройках Робокассы исользуется метод `POST` для отправки Result URL (рекомендуется), то можно использовать следующий код Express.JS для обработки запросов:
+Если в настройках Робокассы используется метод `POST` для отправки Result URL (рекомендуется), то можно использовать следующий код Express.JS для обработки запросов:
 
 TypeScript:
 
 ```typescript
-import { Robokassa, IRobokassaResponse } = from '@dev-aces/robokassa';
+import { Robokassa, IRobokassaResponse } from '@dev-aces/robokassa';
 import express, { Request, Response } from 'express';
 
 const robokassa = new Robokassa({
@@ -98,7 +97,7 @@ app.post('/payment/result', function (req: Request, res: Response) {
   if (robokassa.checkPayment(robokassaResponse)) {
     console.log('Successful payment!');
 
-    const { InvId, /* OutSum, shp_interface, ...etc */ } = robokassaResponse;
+    const { InvId /* OutSum, shp_interface, ...etc */ } = robokassaResponse;
 
     // Обязательно вернуть ответ Робокассе в формате `OK[InvId]` при успешной обработке запроса.
     res.send(`OK${InvId}`);
