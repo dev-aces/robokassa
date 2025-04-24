@@ -37,6 +37,7 @@ const robokassa = new Robokassa({
 const url = robokassa.generatePaymentUrl({
   outSum: '10.00', // или outSum: 10 (type number)
   description: 'Тестовый продукт',
+
   // Пользовательские параметры должны начинаться с "shp_" или "Shp_" или "SHP_".
   // Они будут переданы на ваш сервер вызовом Робокассы после оплаты в том же виде.
   userParameters: {
@@ -57,6 +58,13 @@ const url = robokassa.generatePaymentUrl({
       },
     ],
   },
+
+  // Первый платёж по подписке. После него возможны автосписания без участия пользователя.
+  // recurring: true,
+
+  // Используется при автосписании — указывается номер первого оплаченного счёта с recurring: true.
+  // Применяется только при запросе на https://auth.robokassa.ru/Merchant/Recurring
+  // previousInvoiceId: 154,
 });
 ```
 
