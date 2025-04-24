@@ -14,7 +14,7 @@
     "README.md"
   ],
   "main": "lib/index.js",
-  "repository": "git://github.com/dev-aces/node-robokassa.git",
+  "repository": "git://github.com/dev-aces/robokassa.git",
   "author": "Artur Ampilogov",
   "license": "MIT",
   "scripts": {
