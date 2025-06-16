@@ -1,5 +1,17 @@
 # Robokassa Node.JS
 
+## ⚠можно ставить пока не приняли в основной реп⚠
+
+пакет собран в [npm регистр](https://github.com/shamanov-d/robokassa/pkgs/npm/robokassa)
+
+для установки добавь в `/usr/yu_user/.npmrc`
+
+```
+@shamanov-d:registry=https://npm.pkg.github.com/
+```
+
+---
+
 Пакет [Robokassa](https://docs.robokassa.ru) для Node.JS.
 
 Поддерживает JavaScript и TypeScript.
@@ -11,7 +23,7 @@
 ## Установка
 
 ```sh
-$ npm install @dev-aces/robokassa
+$ npm install @shamanov-d/robokassa
 ```
 
 # Использование
@@ -23,7 +35,7 @@ $ npm install @dev-aces/robokassa
 TypeScript:
 
 ```typescript
-import { Robokassa } from '@dev-aces/robokassa';
+import { Robokassa } from '@shamanov-d/robokassa';
 
 const robokassa = new Robokassa({
   merchantLogin: 'my_merchant_login',
@@ -71,7 +83,7 @@ const url = robokassa.generatePaymentUrl({
 JavaScript:
 
 ```javascript
-const { Robokassa } = require('@dev-aces/robokassa');
+const { Robokassa } = require('@shamanov-d/robokassa');
 
 // Остальное аналогично TypeScript примеру.
 ```
@@ -87,7 +99,7 @@ Result URL для подтверждения и обработки успешн�
 TypeScript:
 
 ```typescript
-import { Robokassa, IRobokassaResponse } from '@dev-aces/robokassa';
+import { Robokassa, IRobokassaResponse } from '@shamanov-d/robokassa';
 import express, { Request, Response } from 'express';
 
 const robokassa = new Robokassa({
