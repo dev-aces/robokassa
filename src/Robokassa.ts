@@ -39,7 +39,7 @@ export class Robokassa {
       MerchantLogin: this.options.merchantLogin,
       IsTest: this.options.isTest ? 1 : undefined,
       ...orderWithCapitalizedKeys,
-      Receipt: receipt ? JSON.stringify(receipt) : undefined,
+      Receipt: receipt ? encodeURIComponent(JSON.stringify(receipt)) : undefined,
       ...userParameters,
       SignatureValue: calculateSendingSignatureValue({
         hashAlgorithm: this.options.hashAlgorithm,
