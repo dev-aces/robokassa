@@ -17,24 +17,24 @@ describe('#Robokassa', () => {
     });
   });
 
-  // it('can be initialized with custom values', () => {
-  //   const result = new Robokassa({
-  //     merchantLogin: 'my_merchant_login',
-  //     password1: 'my_password1',
-  //     password2: 'my_password2',
-  //     hashAlgorithm: 'sha256',
-  //     isTest: true,
-  //     url: 'https://test.robokassa.ru/CUSTOM_URL',
-  //   });
-  //   expect(result.options).toEqual({
-  //     merchantLogin: 'my_merchant_login',
-  //     password1: 'my_password1',
-  //     password2: 'my_password2',
-  //     hashAlgorithm: 'sha256',
-  //     url: 'https://test.robokassa.ru/CUSTOM_URL',
-  //     isTest: true,
-  //   });
-  // });
+  it('can be initialized with custom values', () => {
+    const result = new Robokassa({
+      merchantLogin: 'my_merchant_login',
+      password1: 'my_password1',
+      password2: 'my_password2',
+      hashAlgorithm: 'sha256',
+      isTest: true,
+      url: 'https://test.robokassa.ru/CUSTOM_URL',
+    });
+    expect(result.options).toEqual({
+      merchantLogin: 'my_merchant_login',
+      password1: 'my_password1',
+      password2: 'my_password2',
+      hashAlgorithm: 'sha256',
+      url: 'https://test.robokassa.ru/CUSTOM_URL',
+      isTest: true,
+    });
+  });
 
   describe(' ', () => {
     let robokassa: Robokassa;

@@ -33,7 +33,9 @@ describe('#calculateSendingSignatureValue', () => {
         },
       });
 
-      expect(result).toEqual('my_merchant_login:100.00:my_result_url2:my_success_url2:GET:my_fail_url2:GET:my_password1');
+      expect(result).toEqual(
+        'my_merchant_login:100.00:my_result_url2:my_success_url2:GET:my_fail_url2:GET:my_password1',
+      );
     });
 
     it('should build string WITH sorted user parameters', () => {
