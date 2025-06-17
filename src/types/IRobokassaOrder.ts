@@ -1,6 +1,8 @@
 import { IRobokassaReceipt } from './IRobokassaReceipt';
 import { RobokassaUserParameterKey } from './RobokassaUserParameterKey';
 
+type Method = 'GET' | 'POST';
+
 export interface IRobokassaOrder {
   /***
     Описание покупки, можно использовать только символы английского или русского алфавита, цифры и знаки препинания.
@@ -150,4 +152,28 @@ export interface IRobokassaOrder {
   
     */
   previousInvoiceId?: number;
+
+  /**
+   * Дополнительное оповещение об успешной оплате позволяет получить уведомление на альтернативный адрес, отличный от указанного в настройках магазина(Result URL).
+   * Для операций с холдами на этот адрес направляется уведомление об успешной предавторизации, и это единственный способ его получить.
+   *
+   * https://docs.robokassa.ru/pay-interface/#notification
+   */
+  resultUrl2?: string;
+
+  /**
+   * Дополнительная возможность переадресации покупателя после успешной оплаты на адрес отличный от Success URL указанный в настройках магазина.
+   *
+   * https://docs.robokassa.ru/pay-interface/#return
+   */
+  successUrl2?: string;
+  successUrl2Method?: Method;
+
+  /**
+   * Дополнительная возможность переадресации покупателя после неуспешной оплаты на адрес отличный от Fail URL указанный в настройках магазина.
+   *
+   * https://docs.robokassa.ru/pay-interface/#return
+   */
+  failUrl2?: string;
+  failUrl2Method?: Method;
 }

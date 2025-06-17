@@ -24,6 +24,11 @@ export const buildSendingSignatureString = ({
     order.outSumCurrency,
     order.userIp,
     order.receipt ? JSON.stringify(order.receipt) : undefined,
+    order.resultUrl2,
+    order.successUrl2,
+    order.successUrl2Method,
+    order.failUrl2,
+    order.failUrl2Method,
     password1,
     ...signatureUserParams,
   ];

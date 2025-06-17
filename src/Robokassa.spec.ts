@@ -47,6 +47,23 @@ describe('#Robokassa', () => {
       });
     });
 
+    it('should pass InvId=0 when invId is not specified', () => {
+      const result = robokassa.generatePaymentUrl({
+        description: 'Товар 1',
+        outSum: '100.00',
+
+        resultUrl2: 'https://result.robokassa.ru',
+        successUrl2: 'https://success.robokassa.ru',
+        successUrl2Method: 'GET',
+        failUrl2: 'https://fail.robokassa.ru',
+        failUrl2Method: 'GET',
+      });
+
+      expect(result).toEqual(
+        'https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=my_merchant_login&Description=%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%201&OutSum=100.00&ResultUrl2=https%3A%2F%2Fresult.robokassa.ru&SuccessUrl2=https%3A%2F%2Fsuccess.robokassa.ru&SuccessUrl2Method=GET&FailUrl2=https%3A%2F%2Ffail.robokassa.ru&FailUrl2Method=GET&InvId=0&SignatureValue=0fde8eb3057dabcdf1597ddcfcce35cd',
+      );
+    });
+
     describe('#generatePaymentUrl', () => {
       it('should generate url with minimum parameters', () => {
         const result = robokassa.generatePaymentUrl({
